@@ -9,17 +9,25 @@
     <div th:fragment="projectTable">
         <table>
             <thead>
-                <tr>
-                    <th>Sample</th>
-                    <th>Sample</th>
-                    <th>Sample</th>
-                </tr>
+                <th>
+                    <tr>
+                        <td>Project</td>
+                        <td>Client</td>
+                        <td>Duration</td>
+                        <td>Development Type</td>
+                        <td>Members</td>
+                        <td>Status</td>
+                    </tr>
+                </th>
             </thead>
             <tbody>
-                <tr th:each= "proejct:${listOfProjects}">
+                <tr th:each= "project:${listOfProjects}">
                     <td th:text="${project.proj_name}"></td>
-                    <td th:text="${project.start_date}"></td>
+                    <td th:text="${project.client_name}"></td>
+                    <td th:text="${project.start_date + ' - ' + project.end_date}"></td>
+                    <td th:text="${project.dev_type_name}"></td>
                     <td th:text="${project.members}"></td>
+                    <td th:text="${project.proj_status_name}"></td>
                 </tr>
             </tbody>
         </table>
