@@ -24,6 +24,6 @@ public class ProjectListController {
     @GetMapping("/all")
     public String projectList(Model model) {
         model.addAttribute("listOfProjects", projectService.projectList());
-        return "project_table";
+        return "fragments/project_table";
     }
 }
