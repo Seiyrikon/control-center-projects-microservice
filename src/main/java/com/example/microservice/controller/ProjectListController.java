@@ -17,13 +17,14 @@ public class ProjectListController {
     private ProjectService projectService;
 
     @GetMapping("/")
-    public String iBringYouToLife() {
+    public String iBringYouToLife(Model model) {
+        model.addAttribute("listOfProjects", projectService.projectList());
         return "index";
     }
 
     @GetMapping("/all")
     public String projectList(Model model) {
         model.addAttribute("listOfProjects", projectService.projectList());
-        return "fragments/project_table";
+        return "fragments/ProjectTable";
     }
 }

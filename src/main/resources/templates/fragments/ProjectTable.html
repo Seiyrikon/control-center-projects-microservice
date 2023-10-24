@@ -30,6 +30,13 @@
                     <td th:text="${project.proj_status_name}"></td>
                 </tr>
             </tbody>
+            <tfoot th:if="${listOfProjects == null or #lists.isEmpty(listOfProjects)}">
+                <tr>
+                    <td colspan="6" align="center">
+                        No data availble yet
+                    </td>
+                </tr>
+            </tfoot>
         </table>
     </div>
 </body>
