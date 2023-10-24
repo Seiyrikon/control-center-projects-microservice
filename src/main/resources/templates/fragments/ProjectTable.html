@@ -3,22 +3,22 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    
+
     <title>Project Table</title>
   </head>
   <body>
-    <div th:fragment="projectTable" id="projectTable">
-      <table>
+    <div th:fragment="projectTable">
+      <table id="projectTable" border="1">
         <thead>
-          <th>
-            <tr>
-              <td>Project</td>
-              <td>Client</td>
-              <td>Duration</td>
-              <td>Development Type</td>
-              <td>Members</td>
-              <td>Status</td>
-            </tr>
-          </th>
+          <tr>
+            <th>Project</th>
+            <th>Client</th>
+            <th>Duration</th>
+            <th>Development Type</th>
+            <th>Members</th>
+            <th>Status</th>
+          </tr>
         </thead>
         <tbody>
           <tr th:each="project:${listOfProjects}">
@@ -34,11 +34,11 @@
           th:if="${listOfProjects == null or #lists.isEmpty(listOfProjects)}"
         >
           <tr>
-            <td colspan="6" align="center">No data availble yet</td>
+            <td colspan="6" align="center">No data available yet</td>
           </tr>
         </tfoot>
       </table>
     </div>
   </body>
-  <script src="../js/dataTable.js"></script>
+  
 </html>
