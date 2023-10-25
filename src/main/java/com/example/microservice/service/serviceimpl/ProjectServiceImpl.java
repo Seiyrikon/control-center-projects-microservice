@@ -1,13 +1,18 @@
 package com.example.microservice.service.serviceimpl;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import com.example.microservice.dao.ProjectDao;
+import com.example.microservice.dao.UserDao;
 import com.example.microservice.model.ProjectList;
+import com.example.microservice.model.UserInfo;
 import com.example.microservice.service.ProjectService;
 import com.example.microservice.shared.Response;
 
@@ -20,25 +25,9 @@ public class ProjectServiceImpl implements ProjectService {
     @Autowired
     private ProjectDao projectDao;
 
-    //Initialization of object for response using the Response class found in shared/Response.java
-    Response response = new Response();
-
-    // //Overrides the method of projectList from ProjectService.java found in service/ProjectService.java
-    // @Override
-    // //Used ResponseEntity to leverage the use of ResponseEntity method to properly handle responses sent by this API.
-    // public ResponseEntity<Response> projectList() {
-    //     //Saving the value returned by the method of projectList from ProjectDao to the response object.
-    //     response.setProjectList(projectDao.projectList());
-
-    //     //Checks if the object has value and returns a success response with the value alongside it.
-    //     if(response.getProjectList() != null) {
-    //         return ResponseEntity.ok(response);
-    //     } else {
-    //         //Error handling.
-    //         response.setErrorMessage("Something went wrong. Check your database or spring boot if they are running properly. Try reloading your spring boot app.");
-    //         return ResponseEntity.internalServerError().body(response);
-    //     }
-    // }
+    //Injected the interface UserDao from dao/UserDao.java to access all it's methods 
+    @Autowired
+    private UserDao userDao;
 
     //Overrides the method of projectList from ProjectService.java found in service/ProjectService.java
     @Override
@@ -48,5 +37,22 @@ public class ProjectServiceImpl implements ProjectService {
         return projectDao.projectList();
     }
 
+    @Override
+    public List<Map<String, Object>> getAllMembersOfProject(String proj_id) {
+        List<UserInfo> membersOfProject = projectDao.getAllMembersOfProject(proj_id);
+
+        List<Map<String, Object>> allMembers = membersOfProject.stream()
+                .map(member -> {
+                    UserInfo user = userDao.getUserById(member.getEmp_id());
+                    Map<String, Object> currentMembers = new HashMap<>();
+                    currentMembers.put("emp_id", user.getEmp_id());
+                    currentMembers.put("first_name", user.getFname());
+                    currentMembers.put("last_name", user.getLname());
+                    currentMembers.put("position_name", user.getPosition_name());
+                    return currentMembers;
+                }).collect(Collectors.toList());
+
+        return allMembers;
+    }
     
 }
