@@ -14,7 +14,7 @@
         aria-labelledby="exampleModalLabel"
         aria-hidden="true"
       >
-        <div class="modal-dialog">
+        <div class="modal-dialog modal-lg">
           <div class="modal-content">
             <div class="modal-header">
               <h1 class="modal-title fs-5" id="exampleModalLabel">
@@ -28,7 +28,7 @@
               ></button>
             </div>
             <div class="modal-body">
-                <table id="projectMembers" class="compact hover row-border order-column">
+                <table class="table table-hover">
                     <thead>
                       <tr>
                         <th>Emp ID</th>
@@ -45,6 +45,11 @@
                         <td th:text="${member.position_name}"></td>
                       </tr>
                     </tbody>
+                    <tfoot th:if="${projectMembers == null or #lists.isEmpty(projectMembers)}">
+                      <tr>
+                          <td colspan="4" align="center">No member/s yet</td>
+                      </tr>
+                  </tfoot>
                   </table>
             <div class="modal-footer">
               <button

@@ -21,25 +21,29 @@
         <tbody>
           <tr th:each="project:${listOfProjects}">
             <td>
-              <a th:href="'/project/' + ${project.proj_id}" th:text="${project.proj_name}" style="text-decoration: none;"></a>
+              <a
+                th:href="'/project/' + ${project.proj_id}"
+                th:text="${project.proj_name}"
+                style="text-decoration: none"
+              ></a>
             </td>
             <td th:text="${project.client_name}"></td>
             <td th:text="${project.start_date + ' - ' + project.end_date}"></td>
             <td th:text="${project.dev_type_name}"></td>
             <td>
-              <button 
-                      th:text="${project.members}"
-                      style="text-decoration: none;"
-                      type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#projectMembers"
-                      >
-                      
-              </button>
+              <button
+                th:text="${project.members}"
+                style="text-decoration: none"
+                type="button"
+                class="btn btn-primary"
+                data-bs-toggle="modal"
+                data-bs-target="#projectMembers"
+              ></button>
             </td>
             <td th:text="${project.proj_status_name}"></td>
           </tr>
         </tbody>
       </table>
     </div>
-
   </body>
 </html>
