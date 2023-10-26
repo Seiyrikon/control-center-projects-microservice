@@ -1,49 +1,38 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Project Table</title>
-  </head>
-  <body>
-    <div th:fragment="projectTable">
-      <table id="projectTable" class="compact hover cell-border order-column">
-        <thead>
-          <tr>
-            <th>Project</th>
-            <th>Client</th>
-            <th>Duration</th>
-            <th>Development Type</th>
-            <th>Members</th>
-            <th>Status</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr th:each="project:${listOfProjects}">
-            <td>
-              <a
-                th:href="'/project/' + ${project.proj_id}"
-                th:text="${project.proj_name}"
-                style="text-decoration: none"
-              ></a>
-            </td>
-            <td th:text="${project.client_name}"></td>
-            <td th:text="${project.start_date + ' - ' + project.end_date}"></td>
-            <td th:text="${project.dev_type_name}"></td>
-            <td>
-              <button
-                th:text="${project.members}"
-                style="text-decoration: none"
-                type="button"
-                class="btn btn-primary"
-                data-bs-toggle="modal"
-                data-bs-target="#projectMembers"
-              ></button>
-            </td>
-            <td th:text="${project.proj_status_name}"></td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-  </body>
-</html>
+<div th:fragment="projectTable">
+  <table id="projectTable" class="compact hover cell-border order-column">
+    <thead>
+      <tr>
+        <th>Project</th>
+        <th>Client</th>
+        <th>Duration</th>
+        <th>Development Type</th>
+        <th>Members</th>
+        <th>Status</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr th:each="project:${listOfProjects}">
+        <td>
+          <a
+            th:href="'/project/' + ${project.proj_id}"
+            th:text="${project.proj_name}"
+            style="text-decoration: none"
+          ></a>
+        </td>
+        <td th:text="${project.client_name}"></td>
+        <td th:text="${project.start_date + ' - ' + project.end_date}"></td>
+        <td th:text="${project.dev_type_name}"></td>
+        <td>
+          <a
+            th:href="@{/project/projectMembers/{proj_id}(proj_id=${project.proj_id})}"
+            th:text="${project.members}"
+            data-bs-toggle="modal"
+            data-bs-target="#projectMembers"
+            class="open-modal-link"
+          ></a>
+        </td>
+        <td th:text="${project.proj_status_name}"></td>
+      </tr>
+    </tbody>
+  </table>
+</div>

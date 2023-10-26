@@ -20,14 +20,8 @@ public class ProjectListController {
     @GetMapping("/")
     public String iBringYouToLife(Model model) {
         model.addAttribute("listOfProjects", projectService.projectList());
-        model.addAttribute("projectMembers", projectService.getAllMembersOfProject("6"));
+        model.addAttribute("projectMembers", projectService.getAllMembersOfProject("1"));
         return "index";
-    }
-
-    @GetMapping("/all-project")
-    public String projectList(Model model) {
-        model.addAttribute("listOfProjects", projectService.projectList());
-        return "fragments/ProjectTable :: projectTable";
     }
 
     @GetMapping("/projectMembers/{proj_id}")
