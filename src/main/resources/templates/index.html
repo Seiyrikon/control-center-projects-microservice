@@ -11,13 +11,13 @@
     <link rel="stylesheet" href="../static/css/projectTable.css">
     <title>Project Table</title>
 </head>
-<body>
+<body style="height: 100vh; width: 100%; display: flex; flex-direction: column; align-items: center;">
     <header style="height: 10%; width: 100%;">
         <div th:replace="~{fragments/TopNav :: TopNav}"></div>
     </header>
     
     <h1>Project Table</h1>
-    <main>
+    <main style="height: 85%;width: 95%; margin-top: 1%;display: flex; justify-content: center;">
         <div th:replace= "~{fragments/ProjectTable :: projectTable}"></div>
         <div th:replace= "~{fragments/projectMemberModal :: projectMemberModal }"></div>
     </main>
