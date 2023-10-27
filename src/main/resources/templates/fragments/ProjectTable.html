@@ -1,6 +1,6 @@
 <div th:fragment="projectTable">
   <table id="projectTable" class="compact hover cell-border order-column">
-    <thead>
+    <thead class="dark-header">
       <tr>
         <th>Project</th>
         <th>Client</th>
@@ -16,19 +16,40 @@
           <a
             th:href="'/project/' + ${project.proj_id}"
             th:text="${project.proj_name}"
-            style="text-decoration: none"
+            style="
+              text-decoration: none;
+              display: block;
+              width: 100%;
+              height: 100%;
+            "
           ></a>
         </td>
         <td th:text="${project.client_name}"></td>
         <td th:text="${project.start_date + ' - ' + project.end_date}"></td>
         <td th:text="${project.dev_type_name}"></td>
         <td>
-          <a
+          <!-- <a
             th:href="@{/project/projectMembers/{proj_id}(proj_id=${project.proj_id})}"
             th:text="${project.members}"
             data-bs-toggle="modal"
             data-bs-target="#projectMembers"
             class="open-modal-link"
+            style="
+              display: block;
+              width: 100%;
+              height: 100%;
+              text-decoration: none;
+            "
+          ></a> -->
+          <a
+            th:href="@{/project/projectMembers/{proj_id}(proj_id=${project.proj_id})}"
+            th:text="${project.members}"
+            style="
+              display: block;
+              width: 100%;
+              height: 100%;
+              text-decoration: none;
+            "
           ></a>
         </td>
         <td th:text="${project.proj_status_name}"></td>

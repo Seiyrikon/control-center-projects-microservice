@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 
 import com.example.microservice.dao.ProjectDao;
 import com.example.microservice.dao.UserDao;
+import com.example.microservice.model.Project;
 import com.example.microservice.model.ProjectList;
 import com.example.microservice.model.UserInfo;
 import com.example.microservice.service.ProjectService;
@@ -54,5 +55,12 @@ public class ProjectServiceImpl implements ProjectService {
 
         return allMembers;
     }
+
+    @Override
+    public Project getProjectById(String proj_id) {
+        return projectDao.getProjectById(proj_id);
+    }
+
+    
     
 }

@@ -1,0 +1,13 @@
+table {
+    border: 1px solid white;
+}
+
+.dark-header th {
+    background-color: #333; /* Replace with your preferred dark color */
+    color: white; /* Text color for header cells */
+}
+
+/* Change inner table borders */
+table tr, table td {
+    border: 2px solid white; /* Replace with your preferred border style */
+}

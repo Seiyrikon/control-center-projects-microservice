@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.apache.ibatis.annotations.Mapper;
 
+import com.example.microservice.model.Project;
 import com.example.microservice.model.ProjectList;
 import com.example.microservice.model.UserInfo;
 
@@ -15,4 +16,6 @@ public interface ProjectDao {
 
     //Returns list of user information fetched from the database.
     List<UserInfo> getAllMembersOfProject(String proj_id);
+
+    Project getProjectById(String proj_id);
 }

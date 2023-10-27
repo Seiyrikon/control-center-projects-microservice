@@ -27,6 +27,7 @@ public class ProjectListController {
     @GetMapping("/projectMembers/{proj_id}")
     public String projectList(@PathVariable String proj_id, Model model) {
         model.addAttribute("projectMembers", projectService.getAllMembersOfProject(proj_id));
-        return "fragments/ProjectTable :: projectMemberModal";
+        model.addAttribute("projectInfo", projectService.getProjectById(proj_id));
+        return "projectMembers";
     }
 }

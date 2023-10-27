@@ -48,4 +48,10 @@
         <!-- AND tup.emp_id != 100 -->
     </select>
 
+    <select id="getProjectById" resultType="com.example.microservice.model.Project">
+       SELECT proj_id, proj_name, proj_code, proj_description, start_date, end_date, del_flag
+         FROM tbl_project_mst
+        WHERE proj_id = #{proj_id};
+    </select>
+
 </mapper>
